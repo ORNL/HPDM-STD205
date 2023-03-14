@@ -10,8 +10,11 @@ This API requires the following packages:<br />
 1. [pandas](https://github.com/pandas-dev/pandas/)<br />
 2. [json](https://github.com/nlohmann/json/)<br />
 3. [pint](https://github.com/hgrecco/pint/)<br />
+4. [cbor2](https://github.com/agronholm/cbor2/)<br />
 ## How to run examples
 1. Copy "readHPDM.py" and "unit_dic.json" to the example "RS" folder (e.g., RS0004);
 2. Substitute "RS0004_sample_control.json" with master file name;
 3. Substitute "std205_out.json" with wantted output name.<br />
-`STD205API("RS0004_sample_control.json").write("std205_out.json")`
+`STD205API("RS0004_sample_control.json").write("json","std205_out.json")`
+ Or substitute "std205_out.cbor" with wantted output name.<br />
+`STD205API("RS0004_sample_control.cbor").write("cbor","std205_out.json")`

@@ -1,7 +1,36 @@
 import pandas as pd
+import cbor2
 import json
 import pint
 import os
+unit_file = {
+  "F": "degF",
+  "BTU/LBM": "Btu/pound",
+  "Btu/lb": "Btu/pound",
+  "LBM/HR": "pound/hr",
+  "lb/h":"pound/hr",
+  "W": "W",
+  "PSIA": "psi",
+  "psia": "psi",
+  "R": "degR",
+  "BTU/LBM/R": "Btu/pound/degR",
+  "Btu/lb-R": "Btu/lbm/degR",
+  "FT^3/LBM": "ft^3/pound",
+  "ft3/lb": "ft^3/pound",
+  "ft3": "ft^3",
+  "RPM": "rpm",
+  "INH2O": "inch_H2O_39F",
+  "inH2O": "inch_H2O_39F",
+  "WATER/DRY_AIR": "",
+  "water/dryAir": "",
+  "FT^3/HR": "ft^3/hr",
+  "PSID": "psi",
+  "BTU/H": "Btu/hr",
+  "LBM": "lb",
+  "LBM/FT^3": "lb/(ft^3)",
+  "CFM": "cu_ft/min",
+  "SCFM": "44.16*lb/min"
+}
 class STD205API:
     def __init__(self,control_file_name):
         #load control file
@@ -19,9 +48,9 @@ class STD205API:
                 my_file = open(con_data["performance"][lists[u]]["HPDM_Out_file_name"], "r")
                 data = my_file.read()
                 my_file.close()
-                my_file = open(con_data["performance"][lists[u]]["unit_dic"])
-                unit_data = json.load(my_file)
-                my_file.close()
+                #my_file = open("HPDMSTD205\unit_dic.json")
+                unit_data = unit_file #json.load(my_file)
+                #my_file.close()
                 data_into_list = data.split("\n")
                 n = len(data_into_list)
                 k = 0
@@ -44,9 +73,7 @@ class STD205API:
                 df = pd.DataFrame(t)
                 df.columns = list_name.split("\t")
                 #load dic file
-                my_file = open(con_data["performance"][lists[u]]["dic"])
-                data_j = json.load(my_file)
-                my_file.close()
+                data_j = con_data["performance"][lists[u]]["dic"]
                 jD_grid = data_j["performance_map"]["grid_variables"]
                 jD_look = data_j["performance_map"]["lookup_variables"]
                 title = []
@@ -77,8 +104,12 @@ class STD205API:
                     self.std205out["performance"][lists[u]]["lookup_variables"][k] = df_focus[jD_look[k]["hpdm_name"]].values.tolist()
                 self.std205out["performance"][lists[u]].pop("HPDM_Out_file_name")
                 self.std205out["performance"][lists[u]].pop("dic")
-                self.std205out["performance"][lists[u]].pop("unit_dic")
-    def write(self,output_name):
-        json_object = json.dumps(self.std205out, indent = 4) 
-        with open(output_name, "w") as outfile:
-            outfile.write(json_object)
+    def write(self,mode,output_name):
+        if mode == "json":
+            json_object = json.dumps(self.std205out, indent = 4) 
+            with open(output_name, "w") as outfile:
+                outfile.write(json_object)
+        if mode == "cbor":
+            data = cbor2.dumps(self.std205out)
+            with open(output_name, "wb") as outfile:
+                outfile.write(data)

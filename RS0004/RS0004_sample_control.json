@@ -25,6 +25,7 @@
     "cycling_degradation_coefficient": 0.25,
     "performance_map_cooling": {
       "hpdm_out_file_name": "Out_cool.xls",
+      "grid_variables":{
             "outdoor_coil_entering_dry_bulb_temperature": {
               "hpdm_name": "6:TI_AIR"
             },

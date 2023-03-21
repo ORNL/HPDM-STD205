@@ -25,23 +25,23 @@
     "cycling_degradation_coefficient": 0.25,
     "performance_map_cooling": {
       "hpdm_out_file_name": "Out_cool.xls",
-      "grid_variables":{
-            "outdoor_coil_entering_dry_bulb_temperature": {
+      "grid_variables": {
+        "outdoor_coil_entering_dry_bulb_temperature": {
               "hpdm_name": "6:TI_AIR"
             },
-            "indoor_coil_entering_relative_humidity": {
+        "indoor_coil_entering_relative_humidity": {
               "hpdm_name": "5:TWB"
             },
-            "indoor_coil_entering_dry_bulb_temperature": {
+        "indoor_coil_entering_dry_bulb_temperature": {
               "hpdm_name": "5:TI_AIR"
             },
-            "indoor_coil_air_mass_flow_rate": {
+        "indoor_coil_air_mass_flow_rate": {
               "hpdm_name": "1:mass_flow_rate"
             },
-            "compressor_sequence_number": {
+        "compressor_sequence_number": {
               "hpdm_name": "9:CompStage"
             },
-            "ambient_absolute_air_pressure": {
+        "ambient_absolute_air_pressure": {
               "hpdm_name": "6:P_ATM"
             }
           },

@@ -74,8 +74,8 @@ class STD205API:
                 df.columns = list_name.split("\t")
                 #load dic file
                 data_j = con_data["performance"][lists[u]]["dic"]
-                jD_grid = data_j["performance_map"]["grid_variables"]
-                jD_look = data_j["performance_map"]["lookup_variables"]
+                jD_grid = data_j["grid_variables"]
+                jD_look = data_j["lookup_variables"]
                 title = []
                 title_grid = []
                 for k in jD_grid.keys():

@@ -45,7 +45,7 @@ class STD205API:
         for u in range(len(lists)):
             if lists[u] in con_data["performance"].keys():
                 #load HPDM
-                my_file = open(con_data["performance"][lists[u]]["HPDM_Out_file_name"], "r")
+                my_file = open(con_data["performance"][lists[u]]["hpdm_out_file_name"], "r")
                 data = my_file.read()
                 my_file.close()
                 #my_file = open("HPDMSTD205\unit_dic.json")
@@ -73,7 +73,7 @@ class STD205API:
                 df = pd.DataFrame(t)
                 df.columns = list_name.split("\t")
                 #load dic file
-                data_j = con_data["performance"][lists[u]]["dic"]
+                data_j = con_data["performance"][lists[u]]
                 jD_grid = data_j["grid_variables"]
                 jD_look = data_j["lookup_variables"]
                 title = []
@@ -102,8 +102,7 @@ class STD205API:
                     list_fl[i] = Q_(list_fl[i],unit_data[dfk_f[name][1]]).to_base_units().magnitude
                 for k in jD_look.keys():
                     self.std205out["performance"][lists[u]]["lookup_variables"][k] = df_focus[jD_look[k]["hpdm_name"]].values.tolist()
-                self.std205out["performance"][lists[u]].pop("HPDM_Out_file_name")
-                self.std205out["performance"][lists[u]].pop("dic")
+                self.std205out["performance"][lists[u]].pop("hpdm_out_file_name")
     def write(self,mode,output_name):
         if mode == "json":
             json_object = json.dumps(self.std205out, indent = 4) 

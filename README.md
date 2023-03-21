@@ -17,4 +17,4 @@ This API requires the following packages:<br />
 3. Substitute "std205_out.json" with wantted output name.<br />
 `STD205API("RS0004_sample_control.json").write("json","std205_out.json")`<br />
  Or substitute "std205_out.cbor" with wantted output name.<br />
-`STD205API("RS0004_sample_control.cbor").write("cbor","std205_out.json")`
+`STD205API("RS0004_sample_control.cbor").write("cbor","std205_out.cbor")`

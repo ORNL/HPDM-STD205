@@ -24,10 +24,7 @@
     "compressor_speed_control_type": "DISCRETE",
     "cycling_degradation_coefficient": 0.25,
     "performance_map_cooling": {
-      "HPDM_Out_file_name": "Out_cool.xls",
-      "dic":{
-        "performance_map": {
-          "grid_variables": {
+      "hpdm_out_file_name": "Out_cool.xls",
             "outdoor_coil_entering_dry_bulb_temperature": {
               "hpdm_name": "6:TI_AIR"
             },
@@ -58,8 +55,6 @@
               "hpdm_name": "20:GrossPower"
             }
           }
-        }
-      }
     },
     "performance_map_standby": {
       "grid_variables": {

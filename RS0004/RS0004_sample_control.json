@@ -30,7 +30,7 @@
               "hpdm_name": "6:TI_AIR"
             },
         "indoor_coil_entering_relative_humidity": {
-              "hpdm_name": "5:TWB"
+              "hpdm_name": "5:RH"
             },
         "indoor_coil_entering_dry_bulb_temperature": {
               "hpdm_name": "5:TI_AIR"
